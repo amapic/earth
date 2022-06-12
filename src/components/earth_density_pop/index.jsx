@@ -26,6 +26,53 @@ export function Earth(props) {
     // cloudsRef.current.rotation.y = elapsedTime / 6;
   });
 
+  function addDensity(data) {
+    var geom = new THREE.Geometry();
+    var cubeMat = new THREE.MeshLambertMaterial({
+      color: 0x000000,
+      opacity: 0.6,
+      emissive: 0xffffff,
+    });
+    for (var i = 0; i < data.length - 1; i++) {
+      var cube = new THREE.Mesh(
+        new THREE.CubeGeometry(5, 5, 1 + value / 8, 1, 1, 1, cubeMat)
+      );
+
+      THREE.GeometryUtils.merge(geom, cube);
+    }
+    var total = new THREE.Mesh(geom, new THREE.MeshFaceMaterial());
+    scene.add(total);
+  }
+
+  function addDensity2(data) {
+    var geom = new THREE.Geometry();
+    <mesh ref={earthRef} rotation={[1, 0, 0]} position={[0, 0, 3]}>
+      <meshLambertMaterial
+        //   map={colorMap}
+        //   normalMap={normalMap}
+        //   metalness={0.4}
+        //   roughness={0.7}
+        color="0x000000"
+        opacity={0.6}
+        emissive={0xffffff}
+      />
+
+      {data.map((user) => (
+        // <div className="user">{user}</div>
+        <boxGeometry args={(5, 5, 1 + value / 8, 1, 1, 1, cubeMat)} />
+      ))}
+      {/* var cubeMat = new THREE.MeshLambertMaterial({color: 0x000000,opacity:0.6, emissive:0xffffff}); */}
+      {/* for (var i = 0 ; i < data.length-1 ; i++) {
+       
+        var cube = new THREE.Mesh(new THREE.CubeGeometry(5,5,1+value/8,1,1,1,cubeMat));
+        
+        THREE.GeometryUtils.merge(geom,cube);
+    } */}
+      {/* // var total = new THREE.Mesh(geom,new THREE.MeshFaceMaterial());
+    // scene.add(total); */}
+    </mesh>;
+  }
+
   return (
     <>
       {/* <ambientLight intensity={1} /> */}
@@ -49,7 +96,7 @@ export function Earth(props) {
           side={THREE.DoubleSide}
         />
       </mesh> */}
-      <mesh ref={earthRef} rotation={[1,0,0]} position={[0, 0, 3]}>
+      <mesh ref={earthRef} rotation={[1, 0, 0]} position={[0, 0, 3]}>
         <sphereGeometry args={[1, 32, 32]} />
         {/* <meshPhongMaterial specularMap={specularMap} /> */}
         <meshStandardMaterial
