@@ -2,7 +2,8 @@ import "./App.css";
 import styled from "styled-components";
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
-import { Earth } from "./components/earth";
+// import { Earth } from "./components/earth";
+import { Earth } from "./components/earth_density_pop";
 import { TopSection } from "./components/topSection";
 
 const CanvasContainer = styled.div`
